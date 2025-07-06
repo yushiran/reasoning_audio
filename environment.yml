@@ -1,0 +1,37 @@
+name: reasoning_audio
+channels:
+  - pytorch
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.9
+  - pytorch>=1.12.0
+  - torchvision
+  - torchaudio
+  - cudatoolkit=11.8  # Adjust based on your CUDA version
+  - numpy
+  - pandas
+  - scikit-learn
+  - matplotlib
+  - jupyter
+  - ipykernel
+  - librosa
+  - soundfile
+  - pip
+  - pip:
+    - transformers==4.32.0
+    - accelerate
+    - tiktoken
+    - einops
+    - transformers_stream_generator==0.0.4
+    - scipy
+    - pillow
+    - tensorboard
+    - datasets
+    - huggingface_hub
+    - wandb
+    - seaborn
+    - tqdm
+    - pydub
+    - mutagen
+    - resampy

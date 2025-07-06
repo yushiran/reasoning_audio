@@ -1,0 +1,29 @@
+transformers==4.32.0
+accelerate
+tiktoken
+einops
+transformers_stream_generator==0.0.4
+scipy
+torchvision
+pillow
+tensorboard
+matplotlib
+# Audio processing
+librosa
+soundfile
+pydub
+mutagen
+resampy
+# Machine learning
+numpy
+pandas
+scikit-learn
+datasets
+huggingface_hub
+# Utilities
+tqdm
+seaborn
+wandb
+# Development
+jupyter
+ipykernel

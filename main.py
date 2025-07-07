@@ -1,24 +1,3 @@
-"""
-Geospatial Audio Analysis using Qwen2-Audio-7B-Instruct Model
-
-This script processes audio files with geospatial context using the Qwen2-Audio-7B-Instruct model.
-It supports both single and batch processing of audio files, adding contextual information from 
-Points of Interest (POI) data to enhance the audio analysis.
-
-Usage:
-    # Process a single audio file
-    python main.py --single --audio_path "path/to/audio.wav"
-    
-    # Process all audio files in a directory
-    python main.py --multiple --audio_path "path/to/directory"
-    
-    # Specify a different POI data file
-    python main.py --poi_json "path/to/poi_data.json"
-    
-    # Save batch processing results to a custom location
-    python main.py --multiple --output "path/to/results.json"
-"""
-
 from io import BytesIO
 from urllib.request import urlopen
 from transformers import Qwen2AudioForConditionalGeneration, AutoProcessor
@@ -27,6 +6,7 @@ import os
 import json
 import logging
 import librosa
+import glob
 
 # Configure logger
 logging.basicConfig(
@@ -56,6 +36,7 @@ def match_audio_with_prompt(audio_path, data):
 
     bbox = matching_object.get("bbox")
     poi_texts = matching_object.get("poi_texts")
+    segments = matching_object.get("segments", [])
 
     if not bbox or not poi_texts:
         logger.warning(f"Found matching object but missing bbox or POI data for audio: {audio_name}")
@@ -76,10 +57,10 @@ Nearby POI features include:
 
 Please analyze what sounds can be heard in this audio recording."""
     logger.info(f"Generated prompt for audio {audio_name}: {prompt}")
-    return prompt
+    return prompt, matching_object
 
 
-def process_audio_with_prompt(audio_path, prompt, processor, model):
+def process_audio_with_prompt(audio_path, prompt, processor, model, output_path=None, matching_object=None):
     """Process a single audio file with the given prompt and model.
     
     Args:
@@ -128,6 +109,28 @@ def process_audio_with_prompt(audio_path, prompt, processor, model):
         # Decode the response
         response = processor.batch_decode(generate_ids, skip_special_tokens=True, clean_up_tokenization_spaces=False)[0]
         
+        # Save output to file if output_path is provided
+        if output_path:
+            try:
+                # Create directory if it doesn't exist
+                os.makedirs(os.path.dirname(f"{output_path}"), exist_ok=True)
+
+                # Prepare result data
+                result_data = {
+                    "audio_path": audio_path,
+                    "prompt": prompt,
+                    "response": response,
+                    "segments": matching_object.get("segments", []) if matching_object else [],
+                }
+                
+                # Save to JSON file
+                with open(f"{output_path}_{matching_object.get('id', 'unknown')}.json", 'w', encoding='utf-8') as f:
+                    json.dump(result_data, f, ensure_ascii=False, indent=2)
+
+                logger.info(f"Results saved to {output_path}_{matching_object.get('id', 'unknown')}.json")
+            except Exception as e:
+                logger.error(f"Error saving results to {output_path}_{matching_object.get('id', 'unknown')}.json: {str(e)}")
+
         return response
         
     except Exception as e:
@@ -141,7 +144,7 @@ if __name__ == "__main__":
     
     # Set up command line arguments
     parser = argparse.ArgumentParser(description="Process audio files with Qwen2Audio model")
-    parser.add_argument("--audio_path", type=str, default="Dataset/geospatial_dataset/files_wav/372596.wav", 
+    parser.add_argument("--audio_path", type=str, default="Dataset/geospatial_dataset/files_wav", 
                         help="Path to audio file or directory")
     parser.add_argument("--poi_json", type=str, default="outputs/poi_features_2.json", 
                         help="Path to POI features JSON file")
@@ -149,7 +152,7 @@ if __name__ == "__main__":
                         help="Path to save results (for multiple processing)")
     args = parser.parse_args()
     
-    models_dir = "/scratch/uceesy4"
+    models_dir = os.environ.get("MODEL_PATH")
     
     torch.manual_seed(1234)
     
@@ -167,7 +170,7 @@ if __name__ == "__main__":
         model = Qwen2AudioForConditionalGeneration.from_pretrained(
             model_id,
             device_map="auto",  
-            load_in_8bit=True, 
+            torch_dtype=torch.bfloat16,  # Use bfloat16 for better performance on GPUs
             trust_remote_code=True,
             cache_dir=models_dir
         ).eval()
@@ -186,8 +189,9 @@ if __name__ == "__main__":
 
    
     # Process a single audio file
-    logger.info(f"Processing single audio file: {args.audio_path}")
-    context_prompt = match_audio_with_prompt(args.audio_path, poi_data)
-    response = process_audio_with_prompt(args.audio_path, context_prompt, processor, model)
-    logger.info(f"Generated response: {response}")
-    
+    logger.info(f"Processing audio files in directory: {args.audio_path}")
+    audio_files = glob.glob(os.path.join(args.audio_path, "*.wav"))
+    for audio_file in audio_files:
+        context_prompt, matching_object = match_audio_with_prompt(audio_file, poi_data)
+        response = process_audio_with_prompt(audio_file, context_prompt, processor, model, args.output, matching_object)
+        logger.info(f"Generated response for {audio_file}: {response}")

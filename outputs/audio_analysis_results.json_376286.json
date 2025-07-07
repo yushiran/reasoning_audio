@@ -1,0 +1,42 @@
+{
+  "audio_path": "Dataset/geospatial_dataset/files_wav/376286.wav",
+  "prompt": "This audio was recorded at GPS coordinates: 59.311469, 18.089000 (with bounding box from 59.302485698044080, 18.071398758312878 to 59.320452003726473, 18.106601214984241).\nNearby POI features include:\n- “Highway”: “traffic_signals”\n- “Highway”: “turning_circle”\n- “Highway”: “crossing”\n- “Railway”: “subway_entrance”\n- “Railway”: “Milestone”\n- “Amenity”: “ferry_terminal”\n- “public_transport”: “stop_position”\n- “Leisure”: “Music”\n- “Railway”: “tram_stop”\n- “Railway”: “Crossing”\n- “Amenity”: “Library”\n- “Highway”: “bus_stop”\n- “Amenity”: “Restaurant”\n- “Tourism”: “Hotel”\n- “Amenity”: “Coffee”\n- “Amenity”: “Bar”\n- “Amenity”: “ATM”\n- “Amenity”: “fast_food”\n- “Amenity”: “Doctors”\n- “Amenity”: “Pharmacy”\n- “Amenity”: “Nightclub”\n- “Amenity”: “Kindergarten”\n- “Amenity”: “Bench”\n- “Amenity”: “recycling”\n- “Amenity”: “Parking”\n- “Leisure”: “fitness_center”\n- “Amenity”: “place_of_worship”\n- “Amenity”: “Pub”\n- “Amenity”: “Cinema”\n- “Amenity”: “Theatre”\n- “Amenity”: “Clinic”\n- “Amenity”: “Dentist”\n- “Amenity”: “parking_entrance”\n- “Amenity”: “taxi”\n- “Amenity”: “post_office”\n- “Tourism”: “Museum”\n- “Amenity”: “ice_cream”\n- “Tourism”: “Artwork”\n- “Railway”: “level_crossing”\n- “waterway”: “lock_gate”\n- “Spa” – “Spa”\n- “Amenity”: “Helter”\n- “Highway”: “give_way”\n- “Tourism”: “Hostel”\n- “Amenity”: “Bank”\n- “Amenity”: “bureau_de_change”\n- “Amenity”: “post_box”\n- “Amenity”: “toilets”\n- “Tourism”: “viewpoint”\n- “public_transport”: “station”\n- “Amenity”: “School”\n- “Natural” – “Peak”\n- “Natural” – “Boulder”\n- “Natural” – “Tree”\n- “Amenity”: “bicycle_parking”\n- “Building”: “Residential”\n- “Tourism”: “Information”\n- “Amenity”: “waste_basket”\n- “Amenity”: “vending_machine”\n- “Amenity”: “compressed_air”\n- “Amenity”: “car_sharing”\n- “Amenity”: “Childcare”\n- “Railway”: “Station”\n- “Tourism”: “Picnic_site”\n- “Railway”: “Switch”\n- “Amenity”: “parking_space”\n- “Amenity”: “Motorcycle_parking”\n- “Highway”: “street_lamp”\n- “Amenity”: “internet_cafe”\n- “Leisure”: “firepit”\n- “Tourism”: “Gallery”\n- “Amenity”: “Veterinary”\n- “Amenity”: “car_rental”\n- “Amenity”: “parcel_locker”\n- “Railway”: “proposed”\n- “Highway”: “Elevator”\n- “Amenity”: “ticket_validator”\n- “Amenity”: “charging_station”\n- “Leisure”: “Sports_Center”\n- “Railway”: “Stop”\n- “Leisure”: “playground”\n- “Pitch” – “Pitch”\n- “Amenity”: “community_center”\n- “Amenity”: “drinking water”\n- “Leisure”: “Sports_hall”\n- “Amenity”: “photo_booth”\n- “Picnic Table” – “Picnic Table”\n- “Amenity”: “social facility”\n- “Amenity”: “Studio”\n- “Amenity”: “scooter_parking”\n- “Leisure”: “tabletop_game”\n- “Dance” – “Dance”\n- “Amenity”: “Shower”\n- “Highway”: “Residential”\n- “Highway”: “Unclassified”\n- “Highway”: “Pedestrian”\n- “Highway”: “tertiary”\n- “Highway”: “Service”\n- “Highway”: “cycleway”\n- “Highway” – “Footway”\n- “Highway”: “trunk”\n- “Highway”: “Primary”\n- “landuse”: “cemetery”\n- “Railway”: “Construction”\n- “Park” – “Park”\n- “Building”: “Stadium”\n- “Leisure”: “Stadium”\n- “Highway”: “Secondary”\n- “Highway”: “Steps”\n- “Waterway” – “Fairway”\n- “Building”: “School”\n- “Highway”: “disused”\n- “Railway” – “Subway”\n- “Railway”: “disused”\n- “Natural”: “cliff”\n- “Building”: “Yes”\n- “Building”: “Transportation”\n- “Building”: “Public”\n- “Building”: “Retail”\n- “Waterway”: “Dock”\n- “Natural”: “coastline”\n- “Building”: “Commercial”\n- “Building”: “Office”\n- “Building”: “Apartments”\n- “Building”: “Industrial”\n- “Building”: “Hotel”\n- “Building”: “Theatre”\n- “Natural”: “Wetland”\n- “Highway”: “trunk_link”\n- “Building”: “Kindergarten”\n- “Building”: “Church”\n- “Tourism”: “Attraction”\n- “Building”: “Moscow”\n- “Building”: “fire_station”\n- “Swimming Pool” – “Swimming Pool”\n- “landuse”: “allotments”\n- “landuse”: “grass”\n- “Let’s go” – “Marina”\n- “Natural” – “Water”\n- “Waterway”: “Stream”\n- “Natural” – “Scrub”\n- “Amenity”: “Fountain”\n- “Landuse”: “Railway”\n- “Landuse”: “Industrial”\n- “Building”: “Sports_Center”\n- “building”: “sports_hall”\n- “Railway”: “light_rail”\n- “Building”: “Cathedral”\n- “Building”: “House”\n- “Leisure”: “dog_park”\n- “Highway”: “living_street”\n- “Leisure”: “Bleachers”\n- “Building”: “Kiosk”\n- “Building”: “The roof”\n- “Building” – “Parking”\n- “Highway”: “primary_link”\n- “Landuse”: “Construction”\n- “Highway”: “secondary_link”\n- “building”: “detached”\n- “Building”: “shed”\n- “Highway” – “Path”\n- “Building”: “Terrace”\n- “Building”: “Ship”\n- “Building”: “Garage”\n- “landuse”: “forest”\n- “landuse”: “commercial”\n- “landuse”: “residential”\n- “Building”: “Service”\n- “Building”: “Warehouse”\n- “Waterway”: “Channel”\n- “Highway”: “track”\n- “public_transport”: “platform”\n- “Railway”: “Platform”\n- “Building”: “Elevator”\n- “Amenity”: “College”\n- “Amenity”: “Hospital”\n- “Natural”: “bare_rock”\n- “Building”: “Grandstand”\n- “leisure”: “outdoor_seating”\n- “leisure”: “fitness_station”\n- “Leisure”: “water_park”\n- “Highway”: “platform”\n- “Amenity”: “bus_station”\n- “Building”: “Chimney”\n- “Highway”: “proposed”\n- “Building”: “train_station”\n- “Highway”: “Construction”\n- “Natural”: “tree_row”\n- “leisure”: “ice_rink”\n- “landuse”: “religious”\n- “Building”: “semidetached_house”\n- “Airoway”: “Jet_bridge”\n- “Highway”: “Corridor”\n- “Building”: “Garages”\n- “Building”: “allotment_house”\n- “Landuse”: “Brownfield”\n- “Building”: “Toilets”\n- “Containers” – “Containers”\n- “Natural” – “wood”\n- “Amenity”: “fire_station”\n- “Sunbathing” – “Sunbathing”\n- “Building”: “Hospital”\n- “Building” – “Building”\n- “Natural” – “Bay”\n- “public_transport”: “stop_area”\n\nPlease analyze what sounds can be heard in this audio recording.",
+  "response": "In the audio recording, there is an outdoor setting with children playing and laughing by a slope or hill. A group of people are also present, talking and possibly having a meal as they can hear silverware clinking and the sound of plates being passed around. There's also a vehicle engine running intermittently.",
+  "segments": [
+    {
+      "start": 0.7946962677,
+      "end": 15.8277260473,
+      "label": "Children playing"
+    },
+    {
+      "start": 2.3621911032,
+      "end": 2.8319154013,
+      "label": "Shout or scream"
+    },
+    {
+      "start": 2.2425527254,
+      "end": 10.121408374,
+      "label": "Speech"
+    },
+    {
+      "start": 15.2604138861,
+      "end": 23.6871086442,
+      "label": "Plane"
+    },
+    {
+      "start": 12.5718827213,
+      "end": 13.5592546983,
+      "label": "Laughter"
+    },
+    {
+      "start": 13.7429312279,
+      "end": 21.8280907753,
+      "label": "Speech"
+    },
+    {
+      "start": 19.3617063776,
+      "end": 23.1453241588,
+      "label": "Footsteps"
+    }
+  ]
+}

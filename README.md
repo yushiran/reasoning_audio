@@ -2,27 +2,70 @@
 
 This project processes audio files with geospatial context using the Qwen2-Audio-7B-Instruct model. It analyzes sounds in audio recordings and provides detailed descriptions, taking into account geographical context from Points of Interest (POI) data.
 
-## Features
+## Demo Example
 
-- Audio analysis with state-of-the-art Qwen2-Audio model
-- Integration with geospatial Points of Interest (POI) data
-- Support for both single audio file and batch processing
-- Detailed logging and error handling
-- Command-line interface with customizable options
+Here's an example of the model's analysis compared with the original ground truth segments:
 
-## System Requirements
+### Audio File: `372596.wav`
+<audio controls>
+  <source src="Dataset/geospatial_dataset/files_wav/372596.wav" type="audio/wav">
+  Your browser does not support the audio element.
+</audio>
 
-- Python 3.9 or higher
-- CUDA-compatible GPU with at least 16GB memory (recommended)
-- CPU-only mode available, but significantly slower
+### Geospatial Context
+- **GPS Coordinates**: -40.709861, 172.674541
+- **Nearby POI Features**: Bench, Park, Viewpoint, Gallery, Coastline, River, Forest, etc.
+
+### Model Analysis Result
+```json
+{
+  "audio_path": "Dataset/geospatial_dataset/files_wav/372596.wav",
+  "response": "The sound in the background is that of a bird calling and chirping throughout the duration of the audio.",
+}
+```
+
+### Ground Truth Segments (Original)
+```json
+  "segments": [
+    {
+      "start": 0.1123456789,
+      "end": 4.8476543211,
+      "label": "Bird sounds"
+    },
+    {
+      "start": 5.131478842,
+      "end": 6.8467629421,
+      "label": "Bird sounds"
+    },
+    {
+      "start": 10.9013475692,
+      "end": 13.752947519,
+      "label": "Bird sounds"
+    },
+    {
+      "start": 17.4765920572,
+      "end": 21.7563734914,
+      "label": "Bird sounds"
+    },
+    {
+      "start": 27.5302645302,
+      "end": 30.9840373952,
+      "label": "Bird sounds"
+    },
+    {
+      "start": 32.2423251913,
+      "end": 37.2711220394,
+      "label": "Bird sounds"
+    },
+    {
+      "start": 38.9586495624,
+      "end": 40.7767693149,
+      "label": "Bird sounds"
+    }
+  ]
+```
 
 ## Installation
-
-You can set up the environment using either UV (Universal Versioning) or Conda. Choose the method that works best for you.
-
-### Option 1: Installation with UV (Recommended)
-
-[UV](https://github.com/astral-sh/uv) is a fast Python package installer and resolver. It's faster than pip and has better dependency resolution.
 
 1. First, install UV if you don't have it:
 
@@ -82,59 +125,6 @@ python main.py --poi_json "outputs/custom_poi_features.json"
 python main.py --output "outputs/my_analysis.json"
 ```
 
-## Troubleshooting
-
-### CUDA Out of Memory Errors
-
-If you encounter CUDA out of memory errors, try:
-
-1. Enable 8-bit quantization (already implemented in the code)
-2. Use a smaller model variant if available
-3. Process audio files one by one rather than in batch
-4. Reduce the maximum generation token length
-
-### Audio Loading Issues
-
-If you have issues loading audio files:
-
-1. Ensure the audio file paths are correct
-2. Verify the audio files are in a supported format (WAV recommended)
-3. Check the logs for specific error messages
-
-## Development
-
-### Developer Setup
-
-To set up a development environment:
-
-```bash
-# Using UV
-uv venv
-source .venv/bin/activate
-uv pip install -e ".[dev]"
-
-# Or using Conda
-conda create -n audio-reasoning-dev python=3.9
-conda activate audio-reasoning-dev
-pip install -e ".[dev]"
-```
-
-### Running Tests
-
-```bash
-pytest
-```
-
-### Code Formatting
-
-```bash
-black .
-isort .
-```
-
-## Contact
-
-For questions or issues, please open an issue on the [project GitHub repository](https://github.com/yushiran/reasoning-audio/issues).
 
 ## License
 

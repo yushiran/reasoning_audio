@@ -1,0 +1,27 @@
+{
+  "audio_path": "Dataset/geospatial_dataset/files_wav/376468.wav",
+  "prompt": "This audio was recorded at GPS coordinates: 18.979026, 98.437500 (with bounding box from 18.970042800414070, 98.428000428525934 to 18.988009106096463, 98.446999571474066).\nNearby POI features include:\n- “Highway”: “Unclassified”\n- “landuse”: “residential”\n- “Natural” – “wood”\n\nPlease analyze what sounds can be heard in this audio recording.",
+  "response": "The audio contains birds chirping and a chime bell sound throughout its duration. Additionally, there's the sound of an engine accelerating nearby towards the end of the recording.",
+  "segments": [
+    {
+      "start": 0.5123456789,
+      "end": 22.1676543211,
+      "label": "Bird sounds"
+    },
+    {
+      "start": 0.7575303445,
+      "end": 21.4644666934,
+      "label": "Instrumental music"
+    },
+    {
+      "start": 10.7583382032,
+      "end": 15.4442152671,
+      "label": "Footsteps"
+    },
+    {
+      "start": 18.5861427955,
+      "end": 19.9338017889,
+      "label": "Car"
+    }
+  ]
+}

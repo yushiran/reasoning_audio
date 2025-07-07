@@ -1,0 +1,32 @@
+{
+  "audio_path": "Dataset/geospatial_dataset/files_wav/376288.wav",
+  "prompt": "This audio was recorded at GPS coordinates: 59.311376, 18.088850 (with bounding box from 59.30137586832137, 18.078849782943724 to 59.32137586832137, 18.098849782943727).\nNearby POI features include:\n- “Highway”: “turning_circle”\n- “Highway”: “crossing”\n- “Amenity”: “ferry_terminal”\n- “public_transport”: “stop_position”\n- “Railway”: “tram_stop”\n- “Amenity”: “Library”\n- “Highway”: “bus_stop”\n- “Amenity”: “Coffee”\n- “Amenity”: “ATM”\n- “Amenity”: “Restaurant”\n- “Amenity”: “Doctors”\n- “Amenity”: “Pharmacy”\n- “Amenity”: “Kindergarten”\n- “Amenity”: “Bench”\n- “Highway”: “traffic_signals”\n- “Railway”: “Crossing”\n- “Amenity”: “restaurant;music_venue”\n- “Amenity”: “fast_food”\n- “Amenity”: “recycling”\n- “Amenity”: “Theatre”\n- “Amenity”: “Parking”\n- “Amenity”: “Clinic”\n- “Amenity”: “Pub”\n- “Tourism”: “Museum”\n- “Spa” – “Spa”\n- “Amenity”: “Helter”\n- “Railway”: “level_crossing”\n- “Highway”: “give_way”\n- “Amenity”: “Bar”\n- “Tourism”: “Hostel”\n- “Railway”: “Switch”\n- “Tourism”: “Hotel”\n- “Amenity”: “toilets”\n- “Tourism”: “Artwork”\n- “Amenity”: “post_office”\n- “Amenity”: “post_box”\n- “Tourism”: “viewpoint”\n- “public_transport”: “station”\n- “Amenity”: “School”\n- “Leisure”: “fitness_center”\n- “Natural” – “Tree”\n- “waterway”: “lock_gate”\n- “Tourism”: “Information”\n- “Amenity”: “waste_basket”\n- “Amenity”: “ice_cream”\n- “Amenity”: “parking_entrance”\n- “Amenity”: “bicycle_parking”\n- “Amenity”: “vending_machine”\n- “Amenity”: “compressed_air”\n- “Amenity”: “car_sharing”\n- “Tourism”: “Picnic_site”\n- “Amenity”: “taxi”\n- “Highway”: “street_lamp”\n- “Amenity”: “place_of_worship”\n- “Amenity”: “internet_cafe”\n- “Amenity”: “Dentist”\n- “Leisure”: “firepit”\n- “Amenity”: “Veterinary”\n- “Railway”: “proposed”\n- “Highway”: “Elevator”\n- “Amenity”: “Motorcycle_parking”\n- “Amenity”: “ticket_validator”\n- “Leisure”: “playground”\n- “Railway”: “Station”\n- “Pitch” – “Pitch”\n- “Tourism”: “Gallery”\n- “Picnic Table” – “Picnic Table”\n- “Amenity”: “Childcare”\n- “Highway”: “Residential”\n- “Highway”: “tertiary”\n- “Highway”: “cycleway”\n- “Highway” – “Footway”\n- “Highway”: “Service”\n- “Highway”: “Unclassified”\n- “landuse”: “cemetery”\n- “Railway”: “Construction”\n- “Highway”: “Pedestrian”\n- “Highway”: “trunk”\n- “Highway”: “Secondary”\n- “Park” – “Park”\n- “Railway”: “disused”\n- “Highway”: “Steps”\n- “Natural”: “cliff”\n- “Building”: “Transportation”\n- “Building”: “Yes”\n- “Highway”: “trunk_link”\n- “Waterway”: “Dock”\n- “Natural”: “coastline”\n- “Building”: “Commercial”\n- “Building”: “School”\n- “Building”: “Office”\n- “Building”: “Apartments”\n- “Building”: “Industrial”\n- “Building”: “power_station”\n- “Building”: “Hotel”\n- “Building”: “Kindergarten”\n- “Building”: “Residential”\n- “Building”: “Church”\n- “Railway” – “Subway”\n- “Highway”: “Primary”\n- “Let’s go” – “Marina”\n- “Natural” – “Water”\n- “Waterway”: “Stream”\n- “Building”: “Retail”\n- “Amenity”: “Fountain”\n- “Landuse”: “Industrial”\n- “Building”: “Sports_Center”\n- “building”: “sports_hall”\n- “Leisure”: “Sports_Center”\n- “Building”: “House”\n- “Leisure”: “Bleachers”\n- “Railway”: “light_rail”\n- “Building”: “Kiosk”\n- “Building” – “Parking”\n- “landuse”: “grass”\n- “Highway”: “primary_link”\n- “Landuse”: “Construction”\n- “Highway”: “secondary_link”\n- “Building”: “The roof”\n- “Building”: “Warehouse”\n- “landuse”: “residential”\n- “building”: “detached”\n- “Building”: “shed”\n- “Highway” – “Path”\n- “Building”: “Terrace”\n- “Building”: “Ship”\n- “Building”: “Service”\n- “landuse”: “commercial”\n- “landuse”: “forest”\n- “Leisure”: “dog_park”\n- “Waterway”: “Channel”\n- “Building”: “Public”\n- “public_transport”: “platform”\n- “Railway”: “Platform”\n- “Landuse”: “Railway”\n- “Building”: “Elevator”\n- “Amenity”: “College”\n- “Amenity”: “Hospital”\n- “Natural”: “bare_rock”\n- “Building”: “Grandstand”\n- “Highway”: “platform”\n- “Amenity”: “bus_station”\n- “Building”: “Chimney”\n- “Highway”: “living_street”\n- “Highway”: “Construction”\n- “Natural”: “tree_row”\n- “landuse”: “religious”\n- “Building”: “semidetached_house”\n- “Airoway”: “Jet_bridge”\n- “Highway”: “Corridor”\n- “Building”: “Garages”\n- “Natural” – “Scrub”\n- “Building”: “Garage”\n- “Building”: “allotment_house”\n- “Landuse”: “Brownfield”\n- “Building”: “Toilets”\n- “Containers” – “Containers”\n- “Amenity”: “parking_space”\n- “Natural” – “wood”\n- “Building”: “Hospital”\n- “Highway”: “proposed”\n\nPlease analyze what sounds can be heard in this audio recording.",
+  "response": "In the audio recording, there is a group of children talking by the side of a path on a snowy day. A man is also present, and he says something in Russian which translates to 'Kids are talking by the door'. There's no music or other sound effects in this clip.",
+  "segments": [
+    {
+      "start": 1.5458135861,
+      "end": 4.6074249605,
+      "label": "Children playing"
+    },
+    {
+      "start": 3.2133729161,
+      "end": 3.8871515177,
+      "label": "Shout or scream"
+    },
+    {
+      "start": 14.5726698262,
+      "end": 17.6042654028,
+      "label": "Speech"
+    },
+    {
+      "start": 15.6776044195,
+      "end": 18.7757933292,
+      "label": "Footsteps"
+    },
+    {
+      "start": 10.5205371248,
+      "end": 14.3025276461,
+      "label": "Children playing"
+    }
+  ]
+}

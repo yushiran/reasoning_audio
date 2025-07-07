@@ -128,7 +128,7 @@ This project is licensed under the terms of the LICENSE file included in this re
 ## References
 
 For detailed analysis of Chain-of-Thought reasoning in Audio Large Language Models, see our comprehensive reference document:
-- [CoT Audio LLM Reference Analysis](reference/reference.md)
+- [CoT Audio LLM Reference Analysis](docs/reference.md)
 
 ## Acknowledgements
 

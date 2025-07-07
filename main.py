@@ -149,9 +149,7 @@ if __name__ == "__main__":
                         help="Path to save results (for multiple processing)")
     args = parser.parse_args()
     
-    # Create models directory if it doesn't exist
-    models_dir = os.path.join(os.path.dirname(__file__), "models")
-    os.makedirs(models_dir, exist_ok=True)
+    models_dir = "/scratch/uceesy4"
     
     torch.manual_seed(1234)
     

@@ -40,7 +40,7 @@ cd reasoning_audio
 3. Create and activate a virtual environment:
 
 ```bash
-uv venv
+uv sync
 source .venv/bin/activate  # On Linux/macOS
 # OR
 .venv\Scripts\activate  # On Windows
@@ -56,42 +56,6 @@ uv pip install -r requirements.txt
 
 ```bash
 uv pip install -e .
-```
-
-### Option 2: Installation with Conda
-
-1. Install [Miniconda](https://docs.conda.io/en/latest/miniconda.html) or [Anaconda](https://www.anaconda.com/download/)
-
-2. Clone this repository:
-
-```bash
-git clone https://github.com/yushiran/reasoning-audio.git
-cd reasoning_audio
-```
-
-3. Create a new Conda environment:
-
-```bash
-conda create -n audio-reasoning python=3.9
-conda activate audio-reasoning
-```
-
-4. Install PyTorch with CUDA support:
-
-```bash
-conda install pytorch torchvision torchaudio pytorch-cuda=12.1 -c pytorch -c nvidia
-```
-
-5. Install remaining dependencies using pip (inside the conda environment):
-
-```bash
-pip install -r requirements.txt
-```
-
-6. If you encounter CUDA out-of-memory errors, install bitsandbytes for model quantization:
-
-```bash
-pip install bitsandbytes>=0.39.0
 ```
 
 ## Usage

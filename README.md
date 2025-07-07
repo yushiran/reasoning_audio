@@ -3,13 +3,8 @@
 This project processes audio files with geospatial context using the Qwen2-Audio-7B-Instruct model. It analyzes sounds in audio recordings and provides detailed descriptions, taking into account geographical context from Points of Interest (POI) data.
 
 ## Demo Example
+https://github.com/user-attachments/assets/801c98b7-6d5e-4803-8d80-623b536310ba
 
-Here's an example of the model's analysis compared with the original ground truth segments:
-
-### Audio File: `372596.wav`
-<video width="320" height="240" controls>
-    <source src="docs/372596.mp4" type="video/mp4">
-</video>
 
 
 ### Geospatial Context

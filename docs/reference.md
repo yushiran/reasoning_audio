@@ -1,5 +1,5 @@
 # Chain-of-Thought (CoT) Reasoning in Audio Large Language Models - Reference Analysis
-
+主要看 audio reasoner 和 sari这两篇，reasoner把cot思维链介绍到qwen2上，然后他们多层的思维链想法挺好的，然后是sari介绍了将grpo引入到audio model中来，最后可以看看gama对于音频经过encoder后进入llm的前置处理。
 ## Overview
 This table analyzes four key papers that explore Chain-of-Thought reasoning capabilities in Large Audio-Language Models (LALMs), representing the cutting-edge research in audio reasoning and understanding.
 

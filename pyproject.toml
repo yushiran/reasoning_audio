@@ -1,0 +1,126 @@
+[project]
+name = "reasoning-audio"
+version = "0.1.0"
+description = "Audio reasoning and processing project"
+authors = [
+    {name = "Your Name", email = "your.email@example.com"}
+]
+readme = "README.md"
+license = {file = "LICENSE"}
+requires-python = ">=3.9"
+keywords = ["audio", "machine-learning", "reasoning", "transformers"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Multimedia :: Sound/Audio :: Analysis",
+]
+
+dependencies = [
+    "transformers==4.51.0",
+    "accelerate",
+    "tiktoken",
+    "einops",
+    "transformers-stream-generator==0.0.4",
+    "scipy",
+    "torch>=1.12.0",
+    "torchvision",
+    "torchaudio",
+    "pillow",
+    "tensorboard",
+    "matplotlib",
+    # Audio processing
+    "librosa",
+    "soundfile",
+    "pydub",
+    "mutagen",
+    "resampy",
+    # Machine learning
+    "numpy",
+    "pandas",
+    "scikit-learn",
+    "datasets",
+    "huggingface-hub",
+    # Utilities
+    "tqdm",
+    "seaborn",
+    "wandb",
+    "bitsandbytes>=0.46.1",
+]
+
+[project.optional-dependencies]
+dev = [
+    "jupyter",
+    "ipykernel",
+    "pytest",
+    "pytest-cov",
+    "black",
+    "isort",
+    "flake8",
+    "mypy",
+]
+
+[project.urls]
+Homepage = "https://github.com/yushiran/reasoning-audio"
+Repository = "https://github.com/yushiran/reasoning-audio"
+Issues = "https://github.com/yushiran/reasoning-audio/issues"
+
+[project.scripts]
+reasoning-audio = "main:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.uv]
+dev-dependencies = [
+    "jupyter>=1.0.0",
+    "ipykernel>=6.0.0",
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "black>=23.0.0",
+    "isort>=5.0.0",
+    "flake8>=6.0.0",
+    "mypy>=1.0.0",
+]
+
+[tool.black]
+line-length = 88
+target-version = ['py39']
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+  # directories
+  \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | build
+  | dist
+)/
+'''
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+line_length = 88
+include_trailing_comma = true
+force_grid_wrap = 0
+use_parentheses = true
+ensure_newline_before_comments = true
+
+[tool.mypy]
+python_version = "3.9"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["."]

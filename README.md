@@ -7,10 +7,10 @@ This project processes audio files with geospatial context using the Qwen2-Audio
 Here's an example of the model's analysis compared with the original ground truth segments:
 
 ### Audio File: `372596.wav`
-<video controls>
-  <source src="docs/372596.mp4" type="video/mp4">
-  Your browser does not support the video element.
+<video width="320" height="240" controls>
+    <source src="docs/372596.mp4" type="video/mp4">
 </video>
+
 
 ### Geospatial Context
 - **GPS Coordinates**: -40.709861, 172.674541

@@ -125,6 +125,11 @@ python main.py --output "outputs/my_analysis.json"
 
 This project is licensed under the terms of the LICENSE file included in this repository.
 
+## References
+
+For detailed analysis of Chain-of-Thought reasoning in Audio Large Language Models, see our comprehensive reference document:
+- [CoT Audio LLM Reference Analysis](reference/reference.md)
+
 ## Acknowledgements
 
 - [Qwen2-Audio Model](https://huggingface.co/Qwen/Qwen2-Audio-7B-Instruct) by Alibaba Cloud

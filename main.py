@@ -1,12 +1,16 @@
 from io import BytesIO
 from urllib.request import urlopen
 from transformers import Qwen2AudioForConditionalGeneration, AutoProcessor
+from accelerate import init_empty_weights, infer_auto_device_map, dispatch_model
+from accelerate.utils import send_to_device
 import torch
 import os
 import json
 import logging
 import librosa
 import glob
+from app.prompts.prompt_manager import prompt_manager
+from app.config import global_config
 
 # Configure logger
 logging.basicConfig(
@@ -36,7 +40,7 @@ def match_audio_with_prompt(audio_path, data):
 
     bbox = matching_object.get("bbox")
     poi_texts = matching_object.get("poi_texts")
-    segments = matching_object.get("segments", [])
+    # segments = matching_object.get("segments", [])
 
     if not bbox or not poi_texts:
         logger.warning(f"Found matching object but missing bbox or POI data for audio: {audio_name}")
@@ -51,16 +55,18 @@ def match_audio_with_prompt(audio_path, data):
     poi_formatted = "\n".join([f"- {poi}" for poi in poi_texts])
 
     # Construct the prompt
-    prompt = f"""This audio was recorded at GPS coordinates: {center_lat:.6f}, {center_lon:.6f} (with bounding box from {lat1}, {lon1} to {lat2}, {lon2}).
-Nearby POI features include:
-{poi_formatted}
-
-Please analyze what sounds can be heard in this audio recording."""
-    logger.info(f"Generated prompt for audio {audio_name}: {prompt}")
+    prompt = prompt_manager.load(
+        relative_path="07_08_Classification_Prompt.jinja2",
+        center_lat=center_lat,
+        center_lon=center_lon,
+        lat1=lat1, lon1=lon1, lat2=lat2, lon2=lon2,
+        poi_formatted=poi_formatted
+    )
+    # logger.info(f"Generated prompt for audio {audio_name}: {prompt}")
     return prompt, matching_object
 
 
-def process_audio_with_prompt(audio_path, prompt, processor, model, output_path=None, matching_object=None):
+def process_audio_with_prompt(audio_path, prompt, processor, model, output_dir=None, matching_object=None):
     """Process a single audio file with the given prompt and model.
     
     Args:
@@ -76,7 +82,7 @@ def process_audio_with_prompt(audio_path, prompt, processor, model, output_path=
     try:
         # Create conversation in the chat template format
         conversation = [
-            {'role': 'system', 'content': 'You are a helpful assistant specialized in audio analysis. Provide detailed descriptions of sounds in audio recordings, considering any geographical context provided.'},
+            {'role': 'system', 'content': 'You are a helpful assistant specialized in audio classification.'},
             {"role": "user", "content": [
                 {"type": "audio", "audio_url": audio_path},
                 {"type": "text", "text": prompt},
@@ -94,25 +100,25 @@ def process_audio_with_prompt(audio_path, prompt, processor, model, output_path=
                     if ele["type"] == "audio":
                         audio_data.append(librosa.load(ele["audio_url"], sr=processor.feature_extractor.sampling_rate)[0])
 
-        # Prepare inputs for the model - use 'audio' instead of 'audios'
         inputs = processor(text=text, audio=audio_data, return_tensors="pt", padding=True)
-        
-        # Move ALL tensors to the model's device
+      
         for key in inputs:
             if isinstance(inputs[key], torch.Tensor):
                 inputs[key] = inputs[key].to(model.device)
-        
-        # Generate response
-        generate_ids = model.generate(**inputs, max_new_tokens=256)
-        generate_ids = generate_ids[:, inputs.input_ids.size(1):]
+
+
+        with torch.no_grad():
+            generate_ids = model.generate(**inputs, max_new_tokens=256)
+            generate_ids = generate_ids[:, inputs.input_ids.size(1):]
         
         # Decode the response
         response = processor.batch_decode(generate_ids, skip_special_tokens=True, clean_up_tokenization_spaces=False)[0]
         
         # Save output to file if output_path is provided
-        if output_path:
+        if output_dir:
             try:
                 # Create directory if it doesn't exist
+                output_path = f"{output_dir}/{matching_object.get('id', 'unknown')}.json"
                 os.makedirs(os.path.dirname(f"{output_path}"), exist_ok=True)
 
                 # Prepare result data
@@ -124,12 +130,12 @@ def process_audio_with_prompt(audio_path, prompt, processor, model, output_path=
                 }
                 
                 # Save to JSON file
-                with open(f"{output_path}_{matching_object.get('id', 'unknown')}.json", 'w', encoding='utf-8') as f:
+                with open(output_path, 'w', encoding='utf-8') as f:
                     json.dump(result_data, f, ensure_ascii=False, indent=2)
 
-                logger.info(f"Results saved to {output_path}_{matching_object.get('id', 'unknown')}.json")
+                logger.info(f"Results saved to {output_path}")
             except Exception as e:
-                logger.error(f"Error saving results to {output_path}_{matching_object.get('id', 'unknown')}.json: {str(e)}")
+                logger.error(f"Error saving results to {output_path}: {str(e)}")
 
         return response
         
@@ -144,16 +150,14 @@ if __name__ == "__main__":
     
     # Set up command line arguments
     parser = argparse.ArgumentParser(description="Process audio files with Qwen2Audio model")
-    parser.add_argument("--audio_path", type=str, default="Dataset/geospatial_dataset/files_wav", 
+    parser.add_argument("--audio_path", type=str, default="Dataset/500_Geo/Geo_500", 
                         help="Path to audio file or directory")
-    parser.add_argument("--poi_json", type=str, default="outputs/poi_features_2.json", 
+    parser.add_argument("--poi_json", type=str, default="Dataset/500_Geo/Geo_500.json", 
                         help="Path to POI features JSON file")
-    parser.add_argument("--output", type=str, default="outputs/audio_analysis_results.json", 
+    parser.add_argument("--output", type=str, default="outputs/07_08_classification", 
                         help="Path to save results (for multiple processing)")
     args = parser.parse_args()
-    
-    models_dir = os.environ.get("MODEL_PATH")
-    
+        
     torch.manual_seed(1234)
     
     # Set custom cache directory for downloaded models
@@ -162,17 +166,17 @@ if __name__ == "__main__":
     processor = AutoProcessor.from_pretrained(
         model_id,
         trust_remote_code=True,
-        cache_dir=models_dir
+        cache_dir=global_config.MODEL_PATH
     )
 
     try:
         logger.info("Attempting to load model with automatic device mapping")
         model = Qwen2AudioForConditionalGeneration.from_pretrained(
             model_id,
-            device_map="auto",  
+            device_map="cuda:1",  
             torch_dtype=torch.bfloat16,  # Use bfloat16 for better performance on GPUs
             trust_remote_code=True,
-            cache_dir=models_dir
+            cache_dir=global_config.MODEL_PATH
         ).eval()
         logger.info(f"Model loaded with device map: {model.hf_device_map}")
     except Exception as e:
@@ -194,4 +198,4 @@ if __name__ == "__main__":
     for audio_file in audio_files:
         context_prompt, matching_object = match_audio_with_prompt(audio_file, poi_data)
         response = process_audio_with_prompt(audio_file, context_prompt, processor, model, args.output, matching_object)
-        logger.info(f"Generated response for {audio_file}: {response}")
+        logger.info(f"Generated response for {audio_file}")

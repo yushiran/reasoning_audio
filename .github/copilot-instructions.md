@@ -1,4 +1,4 @@
-# Copilot Instructions for Audio Reasoning Project
+<!-- # Copilot Instructions for Audio Reasoning Project
 
 ## Project Overview
 This project implements a Chain-of-Thought (CoT) reasoning framework for audio analysis with geospatial context. The system processes audio files along with geographical information to perform structured reasoning about potential events and scenarios.
@@ -89,4 +89,4 @@ When providing code suggestions or implementations:
 2. Design with future GRPO fine-tuning in mind
 3. Implement clear reasoning chain outputs
 4. Ensure compatibility with Qwen2-Audio model requirements
-5. Maintain extensibility for advanced CoT methods
+5. Maintain extensibility for advanced CoT methods -->

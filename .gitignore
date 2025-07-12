@@ -174,3 +174,5 @@ cython_debug/
 .pypirc
     
 models
+Dataset/500_Geo
+outputs/

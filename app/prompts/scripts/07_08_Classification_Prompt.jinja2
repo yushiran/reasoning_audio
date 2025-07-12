@@ -1,0 +1,37 @@
+{% if center_lat is defined and center_lon is defined %}
+This audio was recorded at GPS coordinates:
+{{ center_lat|round(6) }},
+{{ center_lon|round(6) }}
+{% endif %}
+{% if lat1 is defined and lon1 is defined and lat2 is defined and lon2 is defined %}
+(with bounding box from
+{{ lat1 }},
+{{ lon1 }} to
+{{ lat2 }},
+{{ lon2 }})
+{% endif %}.
+{% if poi_formatted %}
+Nearby POI features include:
+{{ poi_formatted }}
+{% endif %}
+
+Please analyze the given audio recording and identify all clearly audible sound events that are present.
+
+You MUST ONLY select sound/event categories from the following fixed list — no exceptions, no renaming, no variations. NOT create new categories.
+{
+'Speech', 'Children playing', 'Laughter', 'Shout or scream', 'Footsteps', 'Instrumental music', 'Singing', 'Amplified music',
+'Bird sounds', 'Insects', 'Crickets', 'Dog', 'Cat', 'Poultry', 'Horse', 'Cows mooing', 'Car', 'Truck', 'Bus',
+'Train', 'Tram', 'Metro', 'Plane', 'Helicopter', 'Boat', 'Bell', 'Siren', 'Alarm', 'Vehicle horn', 'Reverse beeper',
+'Explosion', 'Gunshot', 'Jackhammer', 'Drill', 'Crane/Bulldozer', 'Flowing water', 'Falling water', 'Waves'
+}
+
+You must return your response strictly in the following JSON format only:
+{
+'identified_events': [
+  'Event1',
+  'Event2'
+  ]
+}
+
+Only include a sound event in the result if it is clearly audible and confidently present in the audio.
+Do NOT include any event that is only faintly, ambiguously, or possibly present.

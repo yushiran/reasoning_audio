@@ -1,0 +1,18 @@
+{% if center_lat is defined and center_lon is defined %}
+This audio was recorded at GPS coordinates: 
+{{ center_lat|round(6) }}, 
+{{ center_lon|round(6) }}
+{% endif %}
+{% if lat1 is defined and lon1 is defined and lat2 is defined and lon2 is defined %}
+ (with bounding box from 
+{{ lat1 }}, 
+{{ lon1 }} to 
+{{ lat2 }}, 
+{{ lon2 }})
+{% endif %}.
+{% if poi_formatted %}
+Nearby POI features include:
+{{ poi_formatted }}
+{% endif %}
+
+Please analyze what sounds can be heard in this audio recording.

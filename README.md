@@ -103,27 +103,8 @@ uv pip install -e .
 Process a single audio file:
 
 ```bash
-python main.py --audio_path "Dataset/geospatial_dataset/files_wav/372596.wav"
+uv run main.py
 ```
-
-### Additional Options
-
-- Specify a custom POI data file:
-
-```bash
-python main.py --poi_json "outputs/custom_poi_features.json"
-```
-
-- Save results to a custom location:
-
-```bash
-python main.py --output "outputs/my_analysis.json"
-```
-
-
-## License
-
-This project is licensed under the terms of the LICENSE file included in this repository.
 
 ## References
 
